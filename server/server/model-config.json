@@ -1,0 +1,40 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "admin": {
+    "dataSource": "db",
+    "public": true
+  },
+  "employeeInfo": {
+    "dataSource": "db",
+    "public": true
+  },
+  "departmentalInfo": {
+    "dataSource": "db",
+    "public": true
+  },
+  "titleInfo": {
+    "dataSource": "db",
+    "public": true
+  },
+  "attendanceInfo": {
+    "dataSource": "db",
+    "public": true
+  },
+  "payrollInfo": {
+    "dataSource": "db",
+    "public": true
+  }
+}
