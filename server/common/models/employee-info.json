@@ -42,10 +42,6 @@
       "type": "string",
       "required": true
     },
-    "pic": {
-      "type": "string",
-      "required": true
-    },
     "title": {
       "type": "string",
       "required": true
