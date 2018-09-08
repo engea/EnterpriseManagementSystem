@@ -19,10 +19,18 @@ function login(username, password) {
     });
 }
 
-function addMember(member) {
+function addMember(data) {
+    return addData("/employeeInfos",data);
+}
+
+function addDepartment(data) {
+    return addData("/departmentalInfos",data);
+}
+
+function addData(url, data) {
     return new Promise((resolve, reject) => {
         $.ajax({
-            url: `${host}/employeeInfos`, type: "POST", data: member, success: function (data) {
+            url: `${host}${url}`, type: "POST", data: data, success: function (data) {
                 console.log(data.code);
                 if (data.code === 200) {
                     resolve(data);
@@ -35,9 +43,17 @@ function addMember(member) {
 }
 
 function delMemberById(id) {
+    return delDataById("/employeeInfos", id)
+}
+
+function delBumenById(id) {
+    return delDataById("/departmentalInfos", id)
+}
+
+function delDataById(url, id) {
     return new Promise((resolve, reject) => {
         $.ajax({
-            url: `${host}/employeeInfos/${id}`, type: "DELETE", success: function () {
+            url: `${host}${url}/${id}`, type: "DELETE", success: function () {
                 resolve();
             }, error: function () {
                 reject();
@@ -52,6 +68,11 @@ function getMembers() {
 
 function getPayrollInfos() {
     return getData("/payrollInfos");
+}
+
+function getDepartmentalInfos() {
+    return getData("/departmentalInfos");
+
 }
 
 function getData(url) {
