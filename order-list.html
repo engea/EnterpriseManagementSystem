@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  
+
   <head>
     <meta charset="UTF-8">
     <title>欢迎页面-X-admin2.0</title>
@@ -13,13 +13,14 @@
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="./js/xadmin.js"></script>
+    <script type="text/javascript" src="./js/api.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
       <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
       <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  
+
   <body>
     <div class="x-nav">
       <span class="layui-breadcrumb">
@@ -36,33 +37,30 @@
         <form class="layui-form layui-col-md12 x-so">
           <input class="layui-input" placeholder="开始日" name="start" id="start">
           <input class="layui-input" placeholder="截止日" name="end" id="end">
+          <!--<div class="layui-input-inline">-->
+            <!--<select name="contrller">-->
+              <!--<option>员工查询</option>-->
+              <!--<option>已支付</option>-->
+              <!--<option>未支付</option>-->
+            <!--</select>-->
+          <!--</div>-->
+          <!--<div class="layui-input-inline">-->
+            <!--<select name="contrller">-->
+              <!--<option>支付方式</option>-->
+              <!--<option>支付宝</option>-->
+              <!--<option>微信</option>-->
+              <!--<option>货到付款</option>-->
+            <!--</select>-->
+          <!--</div>-->
           <div class="layui-input-inline">
             <select name="contrller">
-              <option>支付状态</option>
-              <option>已支付</option>
-              <option>未支付</option>
+              <option value="">员工姓名</option>
+              <option value="0">黎明</option>
+              <option value="1">高亮</option>
+              <option value="2">秦硕阳</option>
             </select>
           </div>
-          <div class="layui-input-inline">
-            <select name="contrller">
-              <option>支付方式</option>
-              <option>支付宝</option>
-              <option>微信</option>
-              <option>货到付款</option>
-            </select>
-          </div>
-          <div class="layui-input-inline">
-            <select name="contrller">
-              <option value="">订单状态</option>
-              <option value="0">待确认</option>
-              <option value="1">已确认</option>
-              <option value="2">已收货</option>
-              <option value="3">已取消</option>
-              <option value="4">已完成</option>
-              <option value="5">已作废</option>
-            </select>
-          </div>
-          <input type="text" name="username"  placeholder="请输入订单号" autocomplete="off" class="layui-input">
+          <input type="text" name="username"  placeholder="员工查询" autocomplete="off" class="layui-input">
           <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
         </form>
       </div>
@@ -71,49 +69,44 @@
         <button class="layui-btn" onclick="x_admin_show('添加用户','./order-add.html')"><i class="layui-icon"></i>添加</button>
         <span class="x-right" style="line-height:40px">共有数据：88 条</span>
       </xblock>
-      <table class="layui-table">
+      <table id="tab"  class="layui-table">
         <thead>
           <tr>
             <th>
               <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
             </th>
-            <th>订单编号</th>
-            <th>收货人</th>
-            <th>总金额</th>
-            <th>应付金额</th>
-            <th>订单状态</th>
-            <th>支付状态</th>
-            <th>发货状态</th>
-            <th>支付方式</th>
-            <th>配送方式</th>
-            <th>下单时间</th>
-            <th >操作</th>
+            <!--<th>主键</th>-->
+            <th>员工编号</th>
+            <th>姓名</th>
+            <th>年份</th>
+            <th>月份</th>
+            <th>基本工资</th>
+            <th>奖金</th>
+            <th>实际工资</th>
             </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
-            </td>
-            <td>2017009171822298053</td>
-            <td>老王:18925139194</td>
-            <td>7829.10</td>
-            <td>7854.10</td>
-            <td>待确认</td>
-            <td>未支付</td>
-            <td>未发货</td>
-            <td>其他方式</td>
-            <td>申通物流</td>
-            <td>2017-08-17 18:22</td>
-            <td class="td-manage">
-              <a title="查看"  onclick="x_admin_show('编辑','order-view.html')" href="javascript:;">
-                <i class="layui-icon">&#xe63c;</i>
-              </a>
-              <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                <i class="layui-icon">&#xe640;</i>
-              </a>
-            </td>
-          </tr>
+          <!--<tr>-->
+            <!--<td>-->
+              <!--<div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>-->
+            <!--</td>-->
+            <!--&lt;!&ndash;<td>2017009171822298053</td>&ndash;&gt;-->
+            <!--<td>老王:18925139194</td>-->
+            <!--<td>7829.10</td>-->
+            <!--<td>7854.10</td>-->
+            <!--<td>待确认</td>-->
+            <!--<td>未支付</td>-->
+            <!--<td>未发货</td>-->
+            <!--<td>其他方式</td>-->
+            <!--&lt;!&ndash;<td class="td-manage">-->
+              <!--<a title="查看"  onclick="x_admin_show('编辑','order-view.html')" href="javascript:;">-->
+                <!--<i class="layui-icon">&#xe63c;</i>-->
+              <!--</a>-->
+              <!--<a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">-->
+                <!--<i class="layui-icon">&#xe640;</i>-->
+              <!--</a>-->
+            <!--</td>&ndash;&gt;-->
+          <!--</tr>-->
         </tbody>
       </table>
       <div class="page">
@@ -129,9 +122,36 @@
 
     </div>
     <script>
+        $(document).ready(function () {
+            //增加<tr/>
+            var _len = $("#tab tr").length;
+            console.log(_len);
+
+            getPayrollInfos().then((data) => {
+                for (const item of data) {
+                    $("#tab").append(`<tr>
+            <td>
+              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
+            </td>
+            <td>${item.no}</td>
+            <td>${item.name}</td>
+            <td>${item.year}</td>
+            <td>${item.month}</td>
+            <td>${item.basePay}</td>
+            <td>${item.bonus}</td>
+            <td>${item.realPay}</td>
+          </tr>`);
+                }
+                console.log(data);
+            }).catch((err) => {
+                console.log(err);
+            });
+
+
+        });
       layui.use('laydate', function(){
         var laydate = layui.laydate;
-        
+
         //执行一个laydate实例
         laydate.render({
           elem: '#start' //指定元素
@@ -163,7 +183,7 @@
                 $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
                 layer.msg('已启用!',{icon: 5,time:1000});
               }
-              
+
           });
       }
 
@@ -181,7 +201,7 @@
       function delAll (argument) {
 
         var data = tableCheck.getData();
-  
+
         layer.confirm('确认要删除吗？'+data,function(index){
             //捉到所有被选中的，发异步进行删除
             layer.msg('删除成功', {icon: 1});
