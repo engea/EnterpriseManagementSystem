@@ -146,11 +146,6 @@
     var _len = $("#tab tr").length;
     console.log(_len);
 
-    const members = [{
-      no: 1121, name: "小李", sex: "男", tel: 13129192831,
-      idcard: "110234199008113021", address: "北京市海淀区莲香小区1号楼901",
-      joinTime: "2017-01-01 11:11:42", department: "技术部", "title": "后端工程师"
-    }];
     getMembers().then((members) => {
       for (const member of members) {
         $("#tab").append(`<tr>
@@ -182,7 +177,6 @@
             </td>
           </tr>`);
       }
-      console.log(members);
     }).catch((err) => {
       console.log(err);
     });

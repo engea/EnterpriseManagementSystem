@@ -46,6 +46,12 @@
         const username = $("#username").val();
         const password = $("#password").val();
         login(username, password).then((data) => {
+          console.log(data);
+          const storage=window.localStorage;
+          //写入c字段
+          storage.setItem("username", username);
+          storage.setItem("token", data.token);
+
           layer.msg(data.msg, function () {
             location.href = 'index.html'
           });
