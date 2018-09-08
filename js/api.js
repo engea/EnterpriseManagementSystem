@@ -17,5 +17,43 @@ function login(username, password) {
       }
     });
   });
+}
 
+function addMember(member) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: `${host}/employeeInfos`, type: "POST", data: member, success: function (data) {
+        console.log(data.code);
+        if (data.code === 200) {
+          resolve(data);
+        } else {
+          reject(data);
+        }
+      }
+    });
+  });
+}
+
+function delMemberById(id) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: `${host}/employeeInfos/${id}`, type: "DELETE", success: function () {
+        resolve();
+      }, error: function () {
+        reject();
+      }
+    });
+  });
+}
+
+function getMembers() {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: `${host}/employeeInfos`, type: "GET", success: function (data) {
+        resolve(data);
+      }, error: function (err) {
+        reject(err)
+      }
+    });
+  });
 }
