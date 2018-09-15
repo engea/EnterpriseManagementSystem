@@ -78,8 +78,16 @@ function delDataById(url, id) {
   });
 }
 
-function getMembers() {
-  return getData("/employeeInfos");
+function getMembers(bumen) {
+  if (!bumen || bumen==="全部") {
+    return getData("/employeeInfos");
+  } else {
+    let filter = {where: {}};
+    if (bumen) {
+      filter.where.department = bumen;
+    }
+    return getData("/employeeInfos", JSON.stringify(filter));
+  }
 }
 
 function getTitles() {
