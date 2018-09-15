@@ -52,10 +52,7 @@
     <table id="tab" class="layui-table">
         <thead>
         <tr>
-            <th>
-                <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i
-                        class="layui-icon">&#xe605;</i></div>
-            </th>
+
             <th>部门</th>
             <th>主管</th>
             <th>电话</th>
@@ -86,9 +83,6 @@
             $("#total_num").html(data.length);
             for (const item of data) {
                 $("#tab").append(`<tr>
-            <td>
-              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
-            </td>
             <td>${item.department}</td>
             <td>${item.zhuguan}</td>
             <td>${item.tel}</td>

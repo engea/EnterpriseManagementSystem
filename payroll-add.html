@@ -23,27 +23,53 @@
 <body>
 <div class="x-body layui-anim layui-anim-up">
     <form class="layui-form">
-
         <div class="layui-form-item">
             <label for="L_username" class="layui-form-label">
-                <span class="x-red">*</span>职位名称
+                <span class="x-red">*</span>员工
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_username" name="username" required=""
+                <select id="L_username">
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label for="date" class="layui-form-label">
+                <span class="x-red">*</span>日期
+            </label>
+            <div class="layui-input-inline">
+                <input class="layui-input" placeholder="工资日期" name="start" id="date">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label for="basePay" class="layui-form-label">
+                <span class="x-red">*</span>基本工资
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="basePay" name="username" required=""
                        autocomplete="off" class="layui-input">
             </div>
         </div>
 
         <div class="layui-form-item">
-            <label for="L_username" class="layui-form-label">
-                <span class="x-red">*</span>所属部门
+            <label for="bonus" class="layui-form-label">
+                <span class="x-red">*</span>奖金
             </label>
             <div class="layui-input-inline">
-                <select id="L_bumen">
-                </select>
+                <input type="text" id="bonus" name="username" required=""
+                       autocomplete="off" class="layui-input">
             </div>
         </div>
-
+        <div class="layui-form-item">
+            <label for="realPay" class="layui-form-label">
+                <span class="x-red">*</span>实际工资
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="realPay" name="username" required=""
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
         <div class="layui-form-item">
             <button class="layui-btn" lay-filter="add" lay-submit="">
                 增加
@@ -53,11 +79,11 @@
 </div>
 <script>
   $(document).ready(function () {
-    getDepartmentalInfos().then((departs) => {
+    getMembers().then((departs) => {
       console.log(departs);
-      $("#L_bumen").html("");
+      $("#L_username").html("");
       for (const depart of departs) {
-        $("#L_bumen").append($(`<option >${depart.department}</option>`));
+        $("#L_username").append($(`<option value="${depart.no}" >${depart.name}</option>`));
       }
       renderForm();
       // location.replace(location.href)
@@ -65,7 +91,15 @@
       console.log(err);
     });
   });
+  layui.use('laydate', function () {
+    var laydate = layui.laydate;
+    //执行一个laydate实例
+    laydate.render({
+      elem: '#date' //指定元素
+    });
 
+
+  });
   layui.use(['form', 'layer'], function () {
     $ = layui.jquery;
     var form = layui.form
@@ -73,14 +107,23 @@
 
     //监听提交
     form.on('submit(add)', function (data) {
-      console.log(data);
-      const L_username = $("#L_username").val();
-      const L_bumen = $("#L_bumen").val();
+      const no = $("#L_username").val();
+      const name = $("#L_username option:selected").text();
+      const year = new Date($("#date").val()).getFullYear();
+      const month = new Date($("#date").val()).getMonth() + 1;
+      const basePay = $("#basePay").val();
+      const bonus = $("#bonus").val();
+      const realPay = $("#realPay").val();
 
       //发异步，把数据提交给php
-      addZhiwei({
-        name: L_username,
-        department: L_bumen
+      addPayroll({
+        no,
+        name,
+        year,
+        month,
+        basePay,
+        bonus,
+        realPay
       }).then(() => {
 
       }).catch((err) => {
@@ -95,8 +138,9 @@
       return false;
     });
   });
-  function renderForm(){
-    layui.use('form', function(){
+
+  function renderForm() {
+    layui.use('form', function () {
       var form = layui.form;
       form.render();
     });

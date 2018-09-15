@@ -128,16 +128,16 @@
         <!--</tr>-->
         </tbody>
     </table>
-    <div class="page">
-        <div>
-            <a class="prev" href="">&lt;&lt;</a>
-            <a class="num" href="">1</a>
-            <span class="current">2</span>
-            <a class="num" href="">3</a>
-            <a class="num" href="">489</a>
-            <a class="next" href="">&gt;&gt;</a>
-        </div>
-    </div>
+    <!--<div class="page">-->
+        <!--<div>-->
+            <!--<a class="prev" href="">&lt;&lt;</a>-->
+            <!--<a class="num" href="">1</a>-->
+            <!--<span class="current">2</span>-->
+            <!--<a class="num" href="">3</a>-->
+            <!--<a class="num" href="">489</a>-->
+            <!--<a class="next" href="">&gt;&gt;</a>-->
+        <!--</div>-->
+    <!--</div>-->
 
 </div>
 <script>
@@ -232,18 +232,6 @@
         console.log(err);
       })
 
-    });
-  }
-
-
-  function delAll(argument) {
-
-    var data = tableCheck.getData();
-
-    layer.confirm('确认要删除吗？' + data, function (index) {
-      //捉到所有被选中的，发异步进行删除
-      layer.msg('删除成功', {icon: 1});
-      $(".layui-form-checked").not('.header').parents('tr').remove();
     });
   }
 </script>
