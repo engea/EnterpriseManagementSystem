@@ -23,6 +23,10 @@ function addMember(data) {
     return addData("/employeeInfos",data);
 }
 
+function addZhiwei(data) {
+  return addData("/titleInfos",data);
+}
+
 function addDepartment(data) {
     return addData("/departmentalInfos",data);
 }
@@ -45,6 +49,9 @@ function addData(url, data) {
 function delMemberById(id) {
     return delDataById("/employeeInfos", id)
 }
+function delTitleById(id) {
+  return delDataById("/titleInfos", id)
+}
 
 function delBumenById(id) {
     return delDataById("/departmentalInfos", id)
@@ -64,6 +71,10 @@ function delDataById(url, id) {
 
 function getMembers() {
     return getData("/employeeInfos");
+}
+
+function getTitles() {
+  return getData("/titleInfos");
 }
 
 function getPayrollInfos() {
