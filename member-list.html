@@ -56,10 +56,6 @@
     <table id="tab" class="layui-table">
         <thead>
         <tr>
-            <th>
-                <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i
-                        class="layui-icon">&#xe605;</i></div>
-            </th>
             <th>ID</th>
             <th>用户名</th>
             <th>性别</th>
@@ -92,9 +88,6 @@
       $("#total_num").html(members.length);
       for (const member of members) {
         $("#tab").append(`<tr>
-            <td>
-              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
-            </td>
             <td>${member.no}</td>
             <td>${member.name}</td>
             <td>${member.sex}</td>
@@ -108,9 +101,7 @@
                 <!--<i class="layui-icon">&#xe601;</i>-->
               <!--</a>-->
 
-              <a title="编辑"  onclick="x_admin_show('编辑','member-edit.html',600,400)" href="javascript:;">
-                <i class="layui-icon">&#xe642;</i>
-              </a>
+
               <!--<a onclick="x_admin_show('修改密码','member-password.html',600,400)" title="修改密码" href="javascript:;">-->
                 <!--<i class="layui-icon">&#xe631;</i>-->
               <!--</a>-->
@@ -133,9 +124,6 @@
       $("#tabody").html("");
       for (const member of data) {
         $("#tab").append(`<tr>
-            <td>
-              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
-            </td>
             <td>${member.no}</td>
             <td>${member.name}</td>
             <td>${member.sex}</td>
@@ -145,16 +133,6 @@
             <td>${member.address}</td>
             <td>${member.joinTime}</td>
             <td class="td-manage">
-              <!--<a onclick="member_stop(this,'10001')" href="javascript:;"  title="启用">-->
-                <!--<i class="layui-icon">&#xe601;</i>-->
-              <!--</a>-->
-
-              <a title="编辑"  onclick="x_admin_show('编辑','member-edit.html',600,400)" href="javascript:;">
-                <i class="layui-icon">&#xe642;</i>
-              </a>
-              <!--<a onclick="x_admin_show('修改密码','member-password.html',600,400)" title="修改密码" href="javascript:;">-->
-                <!--<i class="layui-icon">&#xe631;</i>-->
-              <!--</a>-->
               <a title="删除" onclick="member_del(this,'${member.id}')" href="javascript:;">
                 <i class="layui-icon">&#xe640;</i>
               </a>
